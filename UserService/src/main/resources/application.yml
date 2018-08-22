@@ -1,0 +1,32 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.boot.autoconfigure: DEBUG
+
+spring:
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration: 
+          okta:
+            client-id: 0oafz5au1bupiejt70h7
+            client-secret: DDjBFvQZqDcLQX7kkocF_kYjKzBZz-x7pewPUnD-
+            clientName: Okta
+            authorization-grant-type: authorization_code
+            redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
+            scope: openid email
+        provider:
+          okta:
+            authorization-uri: https://dev-728590.oktapreview.com/oauth2/default/v1/authorize
+            token-uri: https://dev-728590.oktapreview.com/oauth2/default/v1/token
+            user-info-uri: https://dev-728590.oktapreview.com/oauth2/default/v1/userinfo
+            jwk-set-uri: https://dev-728590.oktapreview.com/oauth2/default/v1/keyss
+            user-name-attribute: sub
+        
