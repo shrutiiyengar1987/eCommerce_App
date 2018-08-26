@@ -1,5 +1,10 @@
 server:
   port: 8081
+ssoServiceUrl: http://localhost:8081
+okta:
+  uri: https://dev-728590.oktapreview.com/api/v1/users
+  api-token: SSWS 00AFXR0TXKb-64XQ5g7SgYTbiSP7271Xic42OIZweJ
+  base-url: https://dev-728590.oktapreview.com
 
 logging:
   level:
@@ -15,13 +20,21 @@ spring:
     oauth2:
       client:
         registration: 
+          google:
+            client-id: 886709932701-sc72kf8e1td2cjq6rjo08j64pk7g1pg9.apps.googleusercontent.com
+            client-secret: xbSUsLul7TM8RCmwQnQTqZVO
+            redirectUriTemplate: 'http://localhost:8081/login/oauth2/code/okta'
+          facebook:
+            client-id: 919284534940373
+            client-secret: 8d18f4f6ff4bc5ccb1b630048dffcb05
           okta:
             client-id: 0oafz5au1bupiejt70h7
             client-secret: DDjBFvQZqDcLQX7kkocF_kYjKzBZz-x7pewPUnD-
             clientName: Okta
             authorization-grant-type: authorization_code
-            redirectUriTemplate: '{baseUrl}/login/oauth2/code/{registrationId}'
+            redirectUriTemplate: 'http://localhost:8081/login/oauth2/code/okta'
             scope: openid email
+            
         provider:
           okta:
             authorization-uri: https://dev-728590.oktapreview.com/oauth2/default/v1/authorize

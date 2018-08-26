@@ -1,0 +1,69 @@
+<!--
+  ~ Copyright 2017 Okta, Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+     <th:block th:include="head :: head"/> 
+
+    <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/js/okta-sign-in.min.js" type="text/javascript"></script>
+    <link href="/css/okta.css" rel="stylesheet" type="text/css"/>
+    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/css/okta-sign-in.min.css" type="text/css" rel="stylesheet"/>
+    <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.9.0/css/okta-theme.css" type="text/css" rel="stylesheet"/>
+
+</head>
+<body class="login">
+  <div id="sign-in-widget"></div>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+var config = {
+
+baseUrl:'https://dev-728590.oktapreview.com',
+
+clientId :'0oafz5au1bupiejt70h7',
+clientSecret:'DDjBFvQZqDcLQX7kkocF_kYjKzBZz-x7pewPUnD-',
+redirectUri:'http://localhost:8081/login/oauth2/code/okta',
+logo:'data:image/png;base64,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',
+authParams: {
+  issuer:'https://dev-728590.oktapreview.com/oauth2/default',
+  responseType:'code',
+  state:'3ewsfd',
+  scopes:['openid','email'],
+  display: 'page'
+}
+
+};
+config. idps =[
+	   {type: 'FACEBOOK', id: '0oag15pft66EyTWBA0h7'},
+	   {type: 'GOOGLE', id: '0oag1qlup9D1kNwnE0h7' }
+	]
+
+
+new OktaSignIn(config).renderEl(
+  { el: '#sign-in-widget' },
+  function (res) {
+    console.log(res)
+  },
+  function (err) {
+    console.log(err)
+  }
+);
+/*]]>*/
+</script>
+
+</body>
+</html>
