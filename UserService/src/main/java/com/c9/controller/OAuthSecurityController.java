@@ -38,7 +38,7 @@ import com.okta.spring.config.OktaClientProperties;
 import com.okta.spring.config.OktaOAuth2Properties;
 
 import reactor.core.publisher.Mono;
-@Controller
+@Controller 
 public class OAuthSecurityController {
 
 	 private static final String STATE = "state";
